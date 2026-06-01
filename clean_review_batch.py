@@ -15,8 +15,15 @@ folders_to_clean = [
 for folder in folders_to_clean:
     p = BASE / folder
     if p.exists():
-        shutil.rmtree(p)
-    p.mkdir(parents=True, exist_ok=True)
+        for item in p.iterdir():
+            if item.name == ".gitkeep":
+                continue
+            if item.is_dir():
+                shutil.rmtree(item)
+            else:
+                item.unlink()
+    else:
+        p.mkdir(parents=True, exist_ok=True)
     print("cleaned:", p)
 
 manifest = BASE / "image_manifest.csv"
