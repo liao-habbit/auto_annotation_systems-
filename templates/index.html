@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>Rice Annotation Reviewer</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div id="layout">
+
+    <div id="sidebar">
+        <h2>Images</h2>
+
+        <div id="imageList">
+            {% for img in images %}
+            {% set st = status_map.get(img, {"reviewed": False, "modified": False}) %}
+
+            <div class="imageItem
+                {% if st.reviewed and st.modified %} modifiedItem
+                {% elif st.reviewed %} reviewedItem
+                {% endif %}"
+                data-name="{{ img }}"
+                onclick="selectImage('{{ img }}')">
+
+                {% if st.reviewed and st.modified %}
+                    <span class="modified">●</span>
+                {% elif st.reviewed %}
+                    <span class="done">✓</span>
+                {% else %}
+                    <span class="pending">○</span>
+                {% endif %}
+
+                {{ img }}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="main">
+        <div id="toolbar">
+            <div class="toolbarButtons">
+                <button onclick="prevImage()">上一張</button>
+                <button onclick="nextImage()">下一張</button>
+                <button onclick="saveXML()">儲存</button>
+                <button onclick="reviewOK()">已審核</button>
+                <button onclick="reviewOKNext()">已審核並下一張</button>
+                <button onclick="openFolder('images')">開啟照片資料夾</button>
+                <button onclick="openFolder('labels')">開啟YOLO結果</button>
+                <button onclick="openFolder('xml')">開啟XML資料夾</button>
+                <button onclick="shutdownApp()">關閉程式</button>
+            </div>
+
+            <div class="toolbarInfo">
+                <span class="hintText">新增框：請直接在圖片上用滑鼠拖曳框選</span>
+                <span id="status"></span>
+            </div>
+        </div>
+
+        <div id="canvasWrap">
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <div id="rightPanel">
+        <h2>Bounding Boxes</h2>
+        <div id="boxList"></div>
+    </div>
+
+</div>
+
+<script>
+const CLASSES = {{ classes | tojson }};
+const ZH = {{ zh | tojson }};
+</script>
+
+<script src="/static/app.js?v=20260526"></script>
+
+</body>
+</html>

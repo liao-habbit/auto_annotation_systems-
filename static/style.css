@@ -1,0 +1,158 @@
+body {
+    margin: 0;
+    font-family: Arial, "Microsoft JhengHei", sans-serif;
+    background: #202124;
+    color: white;
+}
+
+#layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#sidebar {
+    width: 280px;
+    min-width: 260px;
+    overflow-y: auto;
+    background: #2c2c2c;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#main {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#rightPanel {
+    width: 420px;
+    min-width: 390px;
+    overflow-y: auto;
+    background: #2c2c2c;
+    padding: 12px;
+    box-sizing: border-box;
+    font-size: 17px;
+}
+
+#toolbar {
+    background: #333;
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.toolbarButtons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.toolbarInfo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+}
+
+#canvasWrap {
+    flex: 1;
+    overflow: auto;
+    background: #111;
+    min-width: 0;
+}
+
+#canvas {
+    display: block;
+    cursor: crosshair;
+}
+
+.imageItem {
+    padding: 6px;
+    border-bottom: 1px solid #555;
+    cursor: pointer;
+    font-size: 15px;
+    word-break: break-all;
+}
+
+.imageItem:hover {
+    background: #444;
+}
+
+.imageItem.activeItem {
+    outline: 2px solid white;
+    background: #555;
+}
+
+.reviewedItem {
+    background: #183b26;
+}
+
+.modifiedItem {
+    background: #4a3a00;
+}
+
+.done {
+    color: #00ff88;
+    font-weight: bold;
+}
+
+.modified {
+    color: #ffd000;
+    font-weight: bold;
+}
+
+.pending {
+    color: #aaaaaa;
+}
+
+.boxCard {
+    border: 1px solid #666;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #3a3a3a;
+    font-size: 17px;
+}
+
+.boxCard.selectedBox {
+    border: 3px solid yellow;
+    background: #5a4a00;
+}
+
+.boxCard.selectedBox b {
+    color: yellow;
+}
+
+select {
+    width: 270px;
+    font-size: 16px;
+}
+
+input {
+    width: 82px;
+    font-size: 16px;
+}
+
+button {
+    margin: 2px;
+    padding: 5px 9px;
+    white-space: nowrap;
+    font-size: 15px;
+}
+
+.hintText {
+    color: #ffd000;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+#status {
+    font-weight: bold;
+    white-space: nowrap;
+}
