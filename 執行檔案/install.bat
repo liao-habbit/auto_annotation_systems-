@@ -1,8 +1,8 @@
 @echo off
-
+cd /d "%~dp0.."
 echo Installing packages...
 
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 
 echo.
 echo Installation finished.
